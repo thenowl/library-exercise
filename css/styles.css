@@ -1,0 +1,122 @@
+/* CSS RESET */
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* 2. Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* ACTUAL CSS */
+
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 1rem;
+  color: whitesmoke;
+  text-align: center;
+  background: #333;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  gap: 40px;
+}
+
+header {
+  padding-top: 40px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 400px;
+}
+
+.form-cell input {
+  width: 75%;
+}
+
+form button {
+  padding: 5px 10px;
+}
+
+.my-library {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 40px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 20px;
+}
+
+tr:nth-child(even) {
+  background: #444;
+}
