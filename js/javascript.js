@@ -17,7 +17,7 @@ newBookExpanderButton.addEventListener("click", () => {
   }
 });
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, status) {
   //Check if "new" is used when invoking the constructor
   if (!new.target) {
     throw Error("Must use the new operator to call the function");
@@ -25,23 +25,18 @@ function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  if (read) {
-    this.read = "Read";
-  } else {
-    this.read = "Not read";
-  }
+  this.status = status;
 }
 
-Book.prototype.toggleRead = function () {
-  console.log(this.read);
-  if (this.read === "Not read") {
-    this.read = "Read";
+Book.prototype.toggleStatus = function () {
+  if (this.status === "Not read") {
+    this.status = "Read";
   } else {
-    this.read = "Not read";
+    this.status = "Not read";
   }
 };
 
-function addBookToLibrary(title, author, pages, read) {
+function addBookToLibrary(title, author, pages, status) {
   title = document.querySelector("#title").value;
   author = document.querySelector("#author").value;
 
@@ -49,14 +44,16 @@ function addBookToLibrary(title, author, pages, read) {
     ? (pages = "")
     : (pages = `${document.querySelector("#pages").value} pages`);
 
-  document.querySelector("#readNo").checked ? (read = false) : (read = true);
+  document.querySelector("#readNo").checked
+    ? (status = "Not read")
+    : (status = "Read");
 
   if (title === "" || author === "") {
     alert("You need to enter a title and an author");
     return;
   }
 
-  const newBook = new Book(title, author, pages, read);
+  const newBook = new Book(title, author, pages, status);
 
   myLibrary.push(newBook);
 
@@ -69,18 +66,23 @@ function displayBooks(books) {
   const myBooks = document.querySelector("#myBooks");
 
   books.map((book, index) => {
-    const existingBooks = document.querySelector(".book-row");
-
     const bookRow = document.createElement("tr");
     bookRow.classList.add("book-row");
 
-    // Establish library if no books in library are showing yet OR add new book:
-    if (!existingBooks || index === books.length - 1) {
+    // Skip if index does not equal newest book:
+    if (index < books.length - 1) {
+      return;
+    } else {
+      // Distribute book info across table-data cells:
       for (let info in book) {
         // Exclude prototype from being displayed:
         if (book.hasOwnProperty(info)) {
           const infoElement = document.createElement("td");
           infoElement.textContent = book[info];
+          infoElement.setAttribute(
+            "data-th",
+            `${info.charAt(0).toUpperCase() + info.slice(1)}`
+          );
           bookRow.appendChild(infoElement);
 
           // Create autocomplete text input for author from entry:
@@ -104,18 +106,19 @@ function displayBooks(books) {
           }
 
           // Toggle read status:
-          if (info === "read") {
+          if (info === "status") {
             const toggleReadStatus = document.createElement("button");
             toggleReadStatus.classList.add("read-status-button");
             toggleReadStatus.textContent = "Change status?";
             infoElement.appendChild(toggleReadStatus);
-            toggleReadStatus.addEventListener("click", book.toggleRead);
+            toggleReadStatus.addEventListener("click", () => {
+              book.toggleStatus();
+              infoElement.textContent = book[info];
+              infoElement.appendChild(toggleReadStatus);
+            });
           }
         }
       }
-    } else {
-      // If shown library is not empty and index does not equal newest book entry;
-      return;
     }
 
     const removeButtonCell = document.createElement("td");
