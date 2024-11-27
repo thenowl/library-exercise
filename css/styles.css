@@ -86,6 +86,11 @@ header {
 .new-book-expander-button {
   align-self: flex-start;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
   background: orange;
   padding: 0 20px;
   border: 1px solid #000;
@@ -95,6 +100,7 @@ header {
 
 .new-book-expander-button h2 {
   color: #000;
+  display: inline-block;
 }
 
 .new-book-expander-button:hover {
@@ -110,7 +116,7 @@ header {
 .new-book-expander-sign {
   display: inline-block;
   font-size: clamp(1.8rem, 1.5vw, 3rem);
-  vertical-align: middle;
+  font-weight: bold;
 
   transition-duration: 500ms;
 }
