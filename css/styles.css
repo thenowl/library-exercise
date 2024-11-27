@@ -152,6 +152,7 @@ form {
 fieldset {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   gap: 5px;
 
@@ -163,7 +164,7 @@ fieldset {
 
 fieldset legend {
   float: left;
-  width: 50%;
+  vertical-align: middle;
 }
 
 fieldset .radio-container-wrapper {
