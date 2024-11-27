@@ -180,7 +180,7 @@ fieldset .radio-container-wrapper {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: clamp(10px, 2vw, 40px);
 
   width: 50%;
