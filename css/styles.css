@@ -170,10 +170,21 @@ fieldset .radio-container-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   flex-wrap: wrap;
   gap: clamp(10px, 2vw, 40px);
 
   width: 50%;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radio-container input {
+  display: inline-block;
 }
 
 form button {
