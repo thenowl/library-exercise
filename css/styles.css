@@ -89,6 +89,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 10px;
 
   background: orange;
@@ -114,6 +115,7 @@ header {
 }
 
 .new-book-expander-sign {
+  color: #000;
   display: inline-block;
   font-size: clamp(1.8rem, 1.5vw, 3rem);
   font-weight: bold;
