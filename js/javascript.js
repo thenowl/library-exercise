@@ -113,8 +113,10 @@ const displayHandler = (function () {
           if (info === "status") {
             const toggleReadStatus = document.createElement("button");
             toggleReadStatus.classList.add("read-status-button");
+            toggleReadStatus.classList.add("status-button");
             toggleReadStatus.textContent = "Change status?";
             infoElement.appendChild(toggleReadStatus);
+            infoElement.classList.add("read-status");
             toggleReadStatus.addEventListener("click", () => {
               book.toggleStatus();
               infoElement.textContent = book[info];

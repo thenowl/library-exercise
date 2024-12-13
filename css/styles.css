@@ -248,25 +248,14 @@ td:has(> button) {
   white-space: nowrap;
 }
 
-td > button {
-  color: orange;
-  background: #222;
-
-  border: 1px solid orange;
-  border-radius: 0.9rem;
-  box-shadow: 0 0 5px rgba(255, 165, 0, 0.2);
-
-  padding: 4px 8px;
-
-  white-space: nowrap;
-
-  margin-left: clamp(10px, 1vw, 20px);
+.read-status {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 1vw, 20px);
+  align-items: center;
 }
 
-tr:nth-child(even) {
-  background: #444;
-}
-
+.status-button,
 .remove-book {
   color: orange;
   background: #222;
@@ -280,13 +269,17 @@ tr:nth-child(even) {
   white-space: nowrap;
 }
 
-td > button:hover,
+tr:nth-child(even) {
+  background: #444;
+}
+
+.status-button:hover,
 .remove-book:hover {
   scale: 1.05;
   box-shadow: 0 0 8px rgba(255, 165, 0, 0.3);
 }
 
-td > button:active,
+.status-button:active,
 .remove-book:active {
   scale: 0.95;
   box-shadow: none;
@@ -323,10 +316,12 @@ td > button:active,
     width: 25%;
   }
 
+  .read-status {
+    display: block;
+  }
+
   td > button {
     position: absolute;
-    right: 10%;
-    top: 50%;
-    transform: translateY(-50%);
+    right: 20px;
   }
 }
