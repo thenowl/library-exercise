@@ -81,51 +81,45 @@ const displayHandler = (function () {
       } else {
         // Distribute book info across table-data cells:
         for (let info in book) {
-          // Exclude prototype from being displayed:
-          if (book.hasOwnProperty(info)) {
-            const infoElement = document.createElement("td");
-            infoElement.textContent = book[info];
-            infoElement.setAttribute(
-              "data-th",
-              `${info.charAt(0).toUpperCase() + info.slice(1)}`
-            );
-            bookRow.appendChild(infoElement);
+          const infoElement = document.createElement("td");
+          infoElement.textContent = book[info];
+          infoElement.setAttribute(
+            "data-th",
+            `${info.charAt(0).toUpperCase() + info.slice(1)}`
+          );
+          bookRow.appendChild(infoElement);
 
-            // Create autocomplete text input for author from entry:
-            if (info === "author") {
-              const authorSuggestion =
-                document.querySelector("#authorSuggestion");
-              const authorAutoCompleteID = book[info]
-                .toLowerCase()
-                .replaceAll(".", "")
-                .split(" ")
-                .reduce((s, c) => s + (c.charAt(0).toUpperCase() + c.slice(1)));
+          // Create autocomplete text input for author from entry:
+          if (info === "author") {
+            const authorSuggestion =
+              document.querySelector("#authorSuggestion");
+            const authorAutoCompleteID = book[info]
+              .toLowerCase()
+              .replaceAll(".", "")
+              .split(" ")
+              .reduce((s, c) => s + (c.charAt(0).toUpperCase() + c.slice(1)));
 
-              // Check if author already exists:
-              if (!document.querySelector(`#${authorAutoCompleteID}`)) {
-                const authorAutoComplete = document.createElement("option");
-                authorAutoComplete.textContent = book[info];
+            // Check if author already exists:
+            if (!document.querySelector(`#${authorAutoCompleteID}`)) {
+              const authorAutoComplete = document.createElement("option");
+              authorAutoComplete.textContent = book[info];
 
-                authorAutoComplete.setAttribute(
-                  "id",
-                  `${authorAutoCompleteID}`
-                );
-                authorSuggestion.appendChild(authorAutoComplete);
-              }
+              authorAutoComplete.setAttribute("id", `${authorAutoCompleteID}`);
+              authorSuggestion.appendChild(authorAutoComplete);
             }
+          }
 
-            // Toggle read status:
-            if (info === "status") {
-              const toggleReadStatus = document.createElement("button");
-              toggleReadStatus.classList.add("read-status-button");
-              toggleReadStatus.textContent = "Change status?";
+          // Toggle read status:
+          if (info === "status") {
+            const toggleReadStatus = document.createElement("button");
+            toggleReadStatus.classList.add("read-status-button");
+            toggleReadStatus.textContent = "Change status?";
+            infoElement.appendChild(toggleReadStatus);
+            toggleReadStatus.addEventListener("click", () => {
+              book.toggleStatus();
+              infoElement.textContent = book[info];
               infoElement.appendChild(toggleReadStatus);
-              toggleReadStatus.addEventListener("click", () => {
-                book.toggleStatus();
-                infoElement.textContent = book[info];
-                infoElement.appendChild(toggleReadStatus);
-              });
-            }
+            });
           }
         }
       }
