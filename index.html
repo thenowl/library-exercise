@@ -24,16 +24,18 @@
       <div class="form-cell">
         <label for="title">Title:</label>
         <input type="text" name="title" id="title" required>
+        <span class="error" id="titleError"></span>
       </div>
       <div class="form-cell">
         <label for="author">Author:</label>
         <input type="text" name="author" id="author" list="authorSuggestion" required>
         <datalist id="authorSuggestion"></datalist>
-
+        <span class="error" id="authorError"></span>
       </div>
       <div class="form-cell">
         <label for="pages">Number of pages:</label>
-        <input type="number" name="pages" id="pages">
+        <input type="number" name="pages" id="pages" required>
+        <span class="error" id="pagesError"></span>
       </div>
       <fieldset>
         <legend for="status">Have you read the book already?</legend>
